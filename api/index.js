@@ -270,7 +270,6 @@ app.put("/api/places", async (req, res) => {
         return res.status(403).json({ error: "Forbidden" });
       }
 
-      console.log("Added Photos:", addedPhotos);
 
       placeDoc.set({
         title,

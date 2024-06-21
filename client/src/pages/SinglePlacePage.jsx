@@ -81,7 +81,7 @@ function SinglePlacePage() {
             <div className="rounded-xl overflow-hidden max-h-[550px]" key={index}>
               <img
                 className="object-fill w-full h-full"
-                src={photo.includes('http')?photo:"http://localhost:4000/uploads/" + photo}
+                src={photo.includes('https') ? photo:"http://localhost:4000/uploads/" + photo}
                 alt=""
               />
             </div>
@@ -149,7 +149,7 @@ function SinglePlacePage() {
           <div className="overflow-hidden w-full h-full">
             <img
               onClick={() => setShowPhotos(true)}
-              src={"http://localhost:4000/uploads/" + place.photos[0]}
+              src={place.photos[0].includes('https') ? place.photos[0]:"http://localhost:4000/uploads/" + place.photos[0]}
               alt=""
               className="aspect-square object-cover"
             />
@@ -158,7 +158,7 @@ function SinglePlacePage() {
             <div className="overflow-hidden">
               <img
                 onClick={() => setShowPhotos(true)}
-                src={"http://localhost:4000/uploads/" + place.photos[1]}
+                src={place.photos[1].includes('https') ? place.photos[0]:"http://localhost:4000/uploads/" + place.photos[1]}
                 alt=""
                 className="aspect-square object-cover"
               />
@@ -166,7 +166,7 @@ function SinglePlacePage() {
             <div className="overflow-hidden">
               <img
                 onClick={() => setShowPhotos(true)}
-                src={"http://localhost:4000/uploads/" + place.photos[2]}
+                src={place.photos[2].includes('https') ? place.photos[2]:"http://localhost:4000/uploads/" + place.photos[2]}
                 alt=""
                 className="aspect-square object-cover relative top-2"
               />

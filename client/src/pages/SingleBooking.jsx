@@ -46,7 +46,7 @@ function SingleBooking() {
             <div className="rounded-xl overflow-hidden" key={index}>
               <img
                 className="object-fill w-full h-full"
-                src={"http://localhost:4000/uploads/" + photo}
+                src={photo.includes('https') ? photo:"http://localhost:4000/uploads/" + photo}
                 alt=""
               />
             </div>
@@ -200,8 +200,7 @@ function SingleBooking() {
                   <img
                     onClick={() => setShowPhotos(true)}
                     src={
-                      "http://localhost:4000/uploads/" +
-                      booking.placeId.photos[0]
+                      booking.placeId.photos[0].includes('https') ? booking.placeId.photos[0]:"http://localhost:4000/uploads/" + booking.placeId.photos[0]
                     }
                     alt=""
                     className="aspect-square object-cover"
@@ -212,8 +211,7 @@ function SingleBooking() {
                     <img
                       onClick={() => setShowPhotos(true)}
                       src={
-                        "http://localhost:4000/uploads/" +
-                        booking.placeId.photos[1]
+                        booking.placeId.photos[1].includes('https') ? booking.placeId.photos[1]:"http://localhost:4000/uploads/" + booking.placeId.photos[1]
                       }
                       alt=""
                       className="aspect-square object-cover"
@@ -223,8 +221,7 @@ function SingleBooking() {
                     <img
                       onClick={() => setShowPhotos(true)}
                       src={
-                        "http://localhost:4000/uploads/" +
-                        booking.placeId.photos[2]
+                        booking.placeId.photos[2].includes('https') ? booking.placeId.photos[2]:"http://localhost:4000/uploads/" + booking.placeId.photos[2]
                       }
                       alt=""
                       className="aspect-square object-cover relative top-2"

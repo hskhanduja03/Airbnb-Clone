@@ -60,7 +60,7 @@ function SingleBooking() {
     <div>
       {booking ? (
         <div>
-          <div className="bg-gray-100 h-content mt-4 p-4 rounded-3xl flex flex-col gap-2 md: lg:max-w-5xl mx-auto ">
+          <div className="bg-gray-100 h-content mt-4 p-4 rounded-3xl flex flex-col gap-2 md: lg:max-w-4xl mx-auto ">
             <div>
               <h2 className="text-2xl font-semibold">
                 {booking.placeId.title}
@@ -176,7 +176,7 @@ function SingleBooking() {
             </div>
             {booking.placeId.photos && (
               <div
-                className={`grid grid-cols-[2fr_1fr] rounded-3xl relative overflow-hidden min-h-[400px] gap-2 md:max-w-2xl  lg:max-w-3xl `}
+                className={`grid grid-cols-[2fr_1fr] rounded-3xl relative overflow-hidden min-h-[400px] gap-2 mx-auto md:max-w-2xl  lg:max-w-3xl `}
               >
                 <button
                   onClick={() => setShowPhotos(true)}

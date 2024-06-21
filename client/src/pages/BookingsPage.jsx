@@ -23,7 +23,10 @@ function BookingsPage() {
                 <div className="w-full bg-gray-200 rounded-xl h-content flex gap-5 p-3 cursor-pointer lg:w-[80%] mx-auto">
                   <div className="bg-red-400 w-[25%] object-cover overflow-hidden rounded-xl hover:opacity-80 max-h-40 lg:max-h-60">
                     <img
-                      src={"http://localhost:4000/uploads/" + booking.placeId.photos[0]}
+                      src={
+                        booking.placeId.photos[0].includes('https') ? booking.placeId.photos[0]:"http://localhost:4000/uploads/" +booking.placeId.photos[0]
+                      }
+                      
                       className="w-full h-full"
                       alt=""
                     />

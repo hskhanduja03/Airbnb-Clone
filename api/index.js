@@ -73,11 +73,11 @@ async function uploadToS3(path, originalFileName, mimetype) {
   }
 }
 
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   res.json("test ok");
 });
 
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   const { name, email, password } = req.body;
 
   const newUser = await User.create({
@@ -90,7 +90,7 @@ app.post("/register", async (req, res) => {
     .json({ message: "User registered successfully", user: newUser });
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
   const userDoc = await User.findOne({ email });
@@ -114,7 +114,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/profile", async (req, res) => {
+app.get("/api/profile", async (req, res) => {
   const { token } = req.cookies;
   if (token) {
     try {
@@ -133,11 +133,11 @@ app.get("/profile", async (req, res) => {
   }
 });
 
-app.post("/logout", (req, res) => {
+app.post("/api/logout", (req, res) => {
   res.cookie("token", "").json(true);
 });
 
-app.post("/upload-by-link", async (req, res) => {
+app.post("/api/upload-by-link", async (req, res) => {
   try {
     const { link } = req.body;
     const newName = "photo" + Date.now() + ".jpg";
@@ -178,7 +178,7 @@ app.post("/upload-by-link", async (req, res) => {
 
 const photosMiddleware = multer({ dest: "/tmp" });
 app.post(
-  "/upload-photos",
+  "/api/upload-photos",
   photosMiddleware.array("photos", 100),
   async (req, res) => {
     const uploadedFiles = [];
@@ -191,7 +191,7 @@ app.post(
   }
 );
 
-app.post("/places", async (req, res) => {
+app.post("/api/places", async (req, res) => {
   const {
     title,
     address,
@@ -221,11 +221,11 @@ app.post("/places", async (req, res) => {
   res.json(response);
 });
 
-app.get("/places", async (req, res) => {
+app.get("/api/places", async (req, res) => {
   res.json(await Place.find());
 });
 
-app.get("/user-places", (req, res) => {
+app.get("/api/user-places", (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, jwtSecret, {}, async (err, userData) => {
     const { id } = userData;
@@ -233,13 +233,13 @@ app.get("/user-places", (req, res) => {
   });
 });
 
-app.get("/places/:placeId", async (req, res) => {
+app.get("/api/places/:placeId", async (req, res) => {
   const placeId = req.params.placeId; // Extract placeId from request parameters
   const placeData = await Place.findById(placeId);
   res.json(placeData);
 });
 
-app.put("/places", async (req, res) => {
+app.put("/api/places", async (req, res) => {
   const { token } = req.cookies;
   const {
     placeId,
@@ -294,7 +294,7 @@ app.put("/places", async (req, res) => {
   });
 });
 
-app.post("/booking", async (req, res) => {
+app.post("/api/booking", async (req, res) => {
   const { token } = req.cookies;
   const { id } = await jwt.verify(token, jwtSecret);
   const {
@@ -319,14 +319,14 @@ app.post("/booking", async (req, res) => {
   res.json(booking);
 });
 
-app.get("/bookings/:bookingId", async (req, res) => {
+app.get("/api/bookings/:bookingId", async (req, res) => {
   const bookingId = req.params.bookingId;
   console.log(bookingId);
   const booking = await Booking.findById(bookingId).populate("placeId");
   res.json(booking);
 });
 
-app.get("/bookings", async (req, res) => {
+app.get("/api/bookings", async (req, res) => {
   const { token } = req.cookies;
   const { id } = await jwt.verify(token, jwtSecret);
   const mybookings = await Booking.find({ userId: id }).populate("placeId");

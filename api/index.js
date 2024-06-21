@@ -320,7 +320,6 @@ app.post("/api/booking", async (req, res) => {
 
 app.get("/api/bookings/:bookingId", async (req, res) => {
   const bookingId = req.params.bookingId;
-  console.log(bookingId);
   const booking = await Booking.findById(bookingId).populate("placeId");
   res.json(booking);
 });

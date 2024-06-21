@@ -41,9 +41,9 @@ function SingleBooking() {
             />
           </svg>
         </button>
-        <div className="grid gap-3 w-full mt-12 grid-cols-2">
+        <div className="grid gap-3 w-full mt-12 grid-cols-3">
           {booking.placeId.photos.map((photo, index) => (
-            <div className="rounded-xl overflow-hidden" key={index}>
+            <div className="rounded-xl overflow-hidden aspect-square" key={index}>
               <img
                 className="object-fill w-full h-full"
                 src={photo.includes('https') ? photo:"http://localhost:4000/uploads/" + photo}
